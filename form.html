@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Registration</title>
+  <link rel="stylesheet" href="h1.css">
+</head>
+<body bgcolor="#f7edb7" text size="20">
+  <h1>REGISTRATION</h1>
+  <form id="registrationForm">
+    <fieldset>
+      <legend style="color: blue"><b><i>Personal info</b></i></legend>
+      NAME: <input type="text" id="firstName" size="10" placeholder="first name">
+      <input type="text" id="lastName" size="10" placeholder="last name"><br><br><br>
+
+      DOB: <input type="date"><br><br><br>
+
+      email: <input type="text" id="email" placeholder="xyz@rknec.edu"><br><br><br>
+
+      GENDER: <input type="radio" name="gender" value="male"> <b>Male</b>
+      <input type="radio" name="gender" value="female"> <b>Female</b><br><br><br>
+    </fieldset>
+
+    <fieldset>
+      <legend style="color: blue"><b><i>Contact details</b></i></legend>
+
+      CONTACT NUMBER: <input type="text" id="contactNumber"><br><br><br>
+
+      ADDRESS: <input type="text" id="address"><br><br><br>
+
+      PINCODE: <input type="text" id="pincode"><br><br><br>
+
+      COUNTRY: <select name="country" id="country" size="7">
+        <option>India</option> <option>Dubai</option><option>Germany</option><option>London</option>
+        <option>USA</option>
+      </select><br><br><br>
+    </fieldset>
+
+    <fieldset>
+      <legend style="color: blue"><b><i>Privacy info</b></i></legend>
+      PASSWORD: <input type="password" id="password" placeholder="password"><br><br><br>
+      CONFIRM PASSWORD: <input type="password" id="confirmPassword" placeholder="enter password again"><br><br><br>
+    </fieldset>
+
+    <b><input type="checkbox" id="termsCheckbox"> I agree to the terms and condition</b> <br>
+    <br><br>
+    <input type="button" value="REGISTER NOW" onclick="validateForm()" align="center">
+  </form>
+
+  <script>
+    function validateForm() {
+      var firstName = document.getElementById('firstName').value;
+      var lastName = document.getElementById('lastName').value;
+      var email = document.getElementById('email').value;
+      var gender = document.querySelector('input[name="gender"]:checked');
+      var contactNumber = document.getElementById('contactNumber').value;
+      var address = document.getElementById('address').value;
+      var pincode = document.getElementById('pincode').value;
+      var country = document.getElementById('country').value;
+      var password = document.getElementById('password').value;
+      var confirmPassword = document.getElementById('confirmPassword').value;
+      var termsCheckbox = document.getElementById('termsCheckbox');
+
+      if (firstName === '' || lastName === '' || email === '' || gender === null ||
+          contactNumber === '' || address === '' || pincode === '' || country === '' ||
+          password === '' || confirmPassword === '') {
+        alert('All fields are required');
+      } else if (!email.includes('@')) {
+        alert('Enter a valid email address');
+      } else if (isNaN(contactNumber) || contactNumber.length !== 10) {
+        alert('Enter a valid 10-digit contact number');
+      } else if (password.length < 8 || password === 'password' || password === firstName || password === lastName) {
+        alert('Password must be at least 8 characters and should not be common enter strong password');
+      } else if (password !== confirmPassword) {
+        alert('Passwords do not match');
+      } else if (!termsCheckbox.checked) {
+        alert('Please agree to the terms and conditions');
+      } else {
+        alert('Form submitted successfully!');
+        // You can add additional actions here, such as sending the form data to a server.
+      }
+    }
+  </script>
+</body>
+</html>
